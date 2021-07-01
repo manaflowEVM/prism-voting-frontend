@@ -1,7 +1,6 @@
 <app-header></app-header>
-<h2>Login Form</h2>
 
-<form class="mt-5">
+<form *ngIf="isStep1 == false" style="margin-top:50px;">
 
   <div class="text-align-center text-center">
     <h3><b>XXXX</b></h3>
@@ -11,139 +10,173 @@
   </div>
 
 </form>
+<ng-container *ngIf="isStep1 == true">
+  <!-- done -->
+  <div style="margin-top:90px;">
+    <div class="row">
+      <div class="col-md-3 text-align-center text-center">
+        <h3> <b>Create Election</b></h3>
+      </div>
+    </div>
 
-<div class="container">
-  <div class="row">
+  </div>
+  <hr>
+  <!-- done -->
+
+  <div class="row mb-5">
+    <div class="col-md-2 text-align-center text-center">
+
+    </div>
     <div class="col-md-8 text-align-center text-center">
       <div class="row">
-        <div class="col-md-3 text-align-center text-center">
-          <h3> Gov token</h3>
+        <div class="col-md-4 text-align-center text-center">
+          <h3>Create Campaign Election</h3>
         </div>
-        <div class="col-md-3 text-align-center text-center">
-          <label> 30</label>
+        <div class="col-md-6 text-align-center text-center">
+
+          <form name="createForm" [formGroup]="createForm">
+            <input type="text" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && createForm.controls._token_address.errors }"
+              formControlName="_token_address" placeholder="Enter candidate addresses" />
+            <div class="fridge-err">
+              <span>Enter addresses comma saperately. exe- 0x5..77A3 , 0x5..77A3</span>
+
+            </div>
+          </form>
         </div>
-        <div class="col-md-3 text-align-center text-center">
-          <h3> Gov token</h3>
+        <div class="col-md-2 text-align-center text-center">
+          <button type="submit" (click)="onCreate()"> Submit</button>
         </div>
-        <div class="col-md-3 text-align-center text-center">
-          <label> 30</label>
+
+      </div>
+    </div>
+    <div class="col-md-2 text-align-center text-center">
+
+    </div>
+
+  </div>
+  <!-- done -->
+  <div class="row  mb-5">
+    <div class="col-md-3 text-align-center text-center">
+      <h3> <b>Live Elections</b></h3>
+    </div>
+  </div>
+  <hr>
+  <!-- done -->
+  <div class="row mb-5">
+    <div class="col-md-2 text-align-center text-center">
+
+    </div>
+    <div class="col-md-8 text-align-center text-center">
+      <div class="text-align-center text-center">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Election Id</th>
+              <th>Candidates</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of liveElectObj.data;let i = index;">
+              <td>{{i}}</td>
+              <td>{{obj}}</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-2 text-align-center text-center">
+
+    </div>
+  </div>
+
+  <!-- done -->
+  <div class="row  mb-5">
+    <div class="col-md-3 text-align-center text-center">
+      <h3> <b>Vote</b></h3>
+    </div>
+  </div>
+  <hr>
+
+  <!-- done -->
+
+  <div class="row mb-5 text-align-center text-center">
+
+    <div class="col-md-2 text-align-center text-center">
+
+    </div>
+    <div class="col-md-8 text-align-center text-center">
+      <form name="voteForm" [formGroup]="voteForm">
+        <div class="mb-3 text-align-center text-center">
+          <input type="text" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted1 && voteForm.controls._id.errors }" formControlName="_id"
+            placeholder="Enter Election Id" />
         </div>
-      </div>
+        <div class="mb-3 text-align-center text-center">
+          <input type="text" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted1 && voteForm.controls._token_address.errors }"
+            formControlName="_token_address" placeholder="Enter candidate addresses" />
+          <div class="fridge-err">
+            <span>Enter addresses comma saperately. exe- 0x5..77A3 , 0x5..77A3</span>
+
+          </div>
+        </div>
+        <div class=" text-align-center text-center">
+          <button type="submit" (click)="onVote()"> Submit</button>
+        </div>
+
+      </form>
     </div>
-    <div class="col-md-4 text-align-center text-center">
+    <div class="col-md-2 text-align-center text-center">
 
     </div>
-  </div>
-
-</div>
-<hr>
-<div class="row mb-5">
-  <div class="col-md-3 text-align-center text-center">
-    <h3> <b>Candidate list </b></h3>
-  </div>
-</div>
-
-<div class="row mb-5">
-  <div class="col-md-1 text-align-center text-center">
 
   </div>
-  <div class="col-md-8 text-align-center text-center">
-    <div class="row">
-      <div class="col-md-4 text-align-center text-center">
-        <h3> 0x5138d8D...9e46d8c177A3</h3>
-      </div>
-      <div class="col-md-4 text-align-center text-center">
-        <h3> 0x5138d8D...9e46d8c177A3</h3>
-      </div>
-      <div class="col-md-4 text-align-center text-center">
-        <h3> 0x5138d8D...9e46d8c177A3</h3>
-      </div>
+
+
+  <!-- done -->
+  <div class="row  mb-5">
+    <div class="col-md-3 text-align-center text-center">
+      <h3> <b>Results</b></h3>
     </div>
   </div>
-  <div class="col-md-3 text-align-center text-center">
+  <hr>
 
-  </div>
-</div>
+  <div class="row mb-5">
+    <div class="col-md-2 text-align-center text-center">
 
-<div class="row mb-5">
-  <div class="col-md-1 text-align-center text-center">
+    </div>
+    <div class="col-md-8 text-align-center text-center">
+      <div class="text-align-center text-center">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>Election Id</th>
+              <th>Candidates</th>
 
-  </div>
-  <div class="col-md-8 text-align-center text-center">
-    <div class="row">
-      <div class="col-md-4 text-align-center text-center">
-        <h3> 0x5138d8D...9e46d8c177A3</h3>
-      </div>
-      <div class="col-md-4 text-align-center text-center">
-        <h3> 0x5138d8D...9e46d8c177A3</h3>
-      </div>
-      <div class="col-md-4 text-align-center text-center">
-        <h3> 0x5138d8D...9e46d8c177A3</h3>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let obj of resultsElections;let i = index;">
+              <td>{{i}}</td>
+
+              <ng-container *ngIf="obj && obj.length">
+
+                <td *ngFor="let insideObj of obj;let j = index;">
+                  {{insideObj.address ? insideObj.address :'-'}} => {{ insideObj.votes ? insideObj.votes :'-' }}
+                </td>
+              </ng-container>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
-  </div>
-  <div class="col-md-3 text-align-center text-center">
+    <div class="col-md-2 text-align-center text-center">
 
-  </div>
-</div>
-
-<hr>
-
-
-<div class="row mb-5">
-  <div class="col-md-3 text-align-center text-center">
-
-  </div>
-  <div class="col-md-3 text-align-center text-center">
-    <h3> <b> Initial balance : </b></h3>
-  </div>
-  <div class="col-md-3 ">
-    <h3> 100</h3>
-  </div>
-  <div class="col-md-3 text-align-center text-center">
-
-  </div>
-</div>
-
-<div class="row  mb-5">
-  <div class="col-md-2 text-align-center text-center">
-    <h3> <b> small : </b></h3>
-  </div>
-  <div class="col-md-2 text-align-center text-center">
-    <h3> 1000 / 3</h3>
-  </div>
-  <div class="col-md-2 text-align-center text-center">
-    <h3> <b> medium : </b></h3>
-  </div>
-  <div class="col-md-2 text-align-center text-center">
-    <h3> 1000 / 4</h3>
-  </div>
-  <div class="col-md-2 text-align-center text-center">
-    <h3> <b> medium : </b></h3>
-  </div>
-  <div class="col-md-2 text-align-center text-center">
-    <h3> 1000 / 5</h3>
-  </div>
-</div>
-
-<hr>
-
-<div class="row mb-5">
-  <div class="col-md-8 text-align-center text-center">
-    <div class="row">
-      <div class="col-md-4 text-align-center text-center">
-        <h3>ETCH</h3>
-      </div>
-      <div class="col-md-4 text-align-center text-center">
-        <input class="form-control" type="text">
-      </div>
-      <div class="col-md-4 text-align-center text-center">
-        <button> Do ETCH</button>
-
-      </div>
     </div>
   </div>
-  <div class="col-md-4 text-align-center text-center">
 
-  </div>
-</div>
+
+</ng-container>

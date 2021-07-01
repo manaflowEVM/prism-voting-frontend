@@ -133,27 +133,40 @@ export class ApiService {
 
   }
 
-  getBalance(contractInstance, userWalletAccount) {
-    return new Promise(async (resolve, reject) => {
-      if (!userWalletAccount) {
-        console.log('Metamask/Wallet connection failed.');
-        this.toaster.error('Metamask/Wallet connection failed.');
-        return;
-      }
-      let result = await contractInstance.methods.balanceOf(userWalletAccount).call({
-        from: userWalletAccount
-      });
 
-      if (result) {
-        result = await Web3.utils.fromWei(`${result}`);
-        resolve(result);
-      } else {
-        reject('err');
-      }
+  async createCampaign(contractInstance, userAccount, addresses) {
+    // amount2 = Web3.utils.toWei(`${amount2}`)
+    console.log('-------addresses------------------', contractInstance, userAccount, addresses)
+    return new Promise((resolve, reject) => {
 
-    });
+      contractInstance.methods.createCampaign(addresses).send({ from: userAccount }).then((data) => {
+        if (data) {
+          resolve(data);
+        }
+      }).catch((er) => {
+        if (er) {
+          reject(er);
+        }
+      })
 
+    })
   }
 
+  async vote(contractInstance, userAccount, addresses,id) {
+    // amount2 = Web3.utils.toWei(`${amount2}`)
+    console.log('-------addresses,id------------------', contractInstance, userAccount, addresses,id)
+    return new Promise((resolve, reject) => {
 
+      contractInstance.methods.vote(id,addresses).send({ from: userAccount }).then((data) => {
+        if (data) {
+          resolve(data);
+        }
+      }).catch((er) => {
+        if (er) {
+          reject(er);
+        }
+      })
+
+    })
+  }
 }
