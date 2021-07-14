@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid d-flex justify-content-between">
+      <a class="navbar-brand" routerLink="/"><img src="https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880" alt="logo"
+          class="img-fluid logo" /></a>
+      <div class="collapse navbar-collapse justify-content-center" 
+        id="basic-navbar-nav">
+        <div class="navbar-nav">
+    
+        </div>
+      </div>
+      <div>
+        <div *ngIf="isStep1 == false">
+          <button type="button" class="btn_header" (click)="connectToMetaMask()">Connect</button>
+        </div>
+  
+  
+        <h3 class=" mb-0 text-white mr-2 " style="padding-right: 15px;font-size: 21px;" *ngIf="isStep1 == true">
+          <div class="text-align-center text-center" style="font-weight: 800;">{{showObj.networkName ? showObj.networkName :'-'}}</div>
+          <div class=" d-flex align-items-center justify-content-center">
+            <span>{{showObj.userAccount| slice:0:6}}...</span>
+            <span>{{showObj.userAccount ? (showObj.userAccount| slice:-4) :'-'}}</span>
+          </div>
+        </h3>
+  
+        <button class="navbar-toggler navbar-toggler-right" type="button"
+          aria-controls="basic-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  
