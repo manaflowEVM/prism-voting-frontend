@@ -9,12 +9,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
+import { VoteComponent } from './vote/vote.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
