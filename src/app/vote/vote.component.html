@@ -2,20 +2,112 @@
 
 <p>vote works!</p>
 <div class="container">
+    <div class="row text-center" style="margin-top:90px;">
+
+    </div>
+    <hr>
+    <div class="row text-center mt-5">
+        <div class="col-md-4">
+            <h3> <b>Your GOV: 1000</b></h3>
+        </div>
+        <div class="col-md-4">
+            <input type="number" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" (click)="onCreate()"> Lock (GOV -> IOU)</button>
+
+        </div>
+    </div>
+    <div class="row text-center mt-5">
+        <div class="col-md-4">
+            <h3> <b>Your IOU: 5000</b></h3>
+        </div>
+        <div class="col-md-4">
+            <input type="number" class="form-control">
+        </div>
+        <div class="col-md-4">
+            <button type="submit" (click)="onCreate()"> Free ( IOU -> GOV)</button>
+
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-6 text-right">
+            <h3> Current Voted slate :</h3>
+        </div>
+ 
+        <div class="col-md-6">
+            <h3> <b>0x6ab8463a4185b80905e05....</b></h3>
+        </div>
+        <div class="col-md-6 text-right">
+            <h3> Selected slate :</h3>
+        </div>
+ 
+        <div class="col-md-6">
+            <h3> <b>0x28e2bc0b49BB3A4271c52287Df....</b></h3>
+        </div>
+
+        <div class="col-md-6 text-right">
+            <button type="submit" class="ml-5" style="font-size: 20px;" (click)="onCreate() "> Etch</button>
+            <button type="submit"  class="ml-5" style="font-size: 20px;" (click)="onCreate()"> Vote</button>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12 text-center ">
+ 
+            <h3> <b>Selected Candidates list</b></h3>
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td style="font-size: 30px;"> 0xf164fc0ec4e93095b804a4795....</td>
+        
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td style="font-size: 30px;"> 0x28e2bc0b49BB3A4271c52287Df....</td>
+        
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td style="font-size: 30px;"> f164fc0ec4e93095b804adfadft7g4....</td>
+        
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td style="font-size: 30px;"> 0x2E1b342132A67Ea578e4E3B8fsf54....</td>
+        
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" /></td>
+                        <td style="font-size: 30px;"> 0x28e2bc0b49BB3A4271c52287Df....</td>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<!-- <div class="container">
 
     <div class="row text-center" style="margin-top:90px;">
         <div class="col-md-6">
             <h3> <b>ICU TOKEN</b></h3>
         </div>
         <div class="col-md-6">
-            <h3> <b>GOV TOKEN</b></h3>
+            <h3> <b>ICU TOKEN</b></h3>
 
         </div>
         <div class="col-md-6">
-            <p> <b>0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2</b></p>
+            <p> <b>ICU TOKEN</b></p>
         </div>
         <div class="col-md-6">
-            <p> <b>0x17F6AD8Ef982297579C203069C1DbfFE4348c372</b></p>
+            <p> <b>ICU TOKEN</b></p>
 
         </div>
         <div class="col-md-6">
@@ -26,10 +118,10 @@
 
         </div>
         <div class="col-md-6">
-            <p> <b>00.00</b></p>
+            <p> <b>0000</b></p>
         </div>
         <div class="col-md-6">
-            <p> <b>00.00</b></p>
+            <p> <b>0000</b></p>
 
         </div>
         <hr>
@@ -61,27 +153,27 @@
             <table class="table table-hover table-striped">
                 <tbody>
                     <tr>
-                        <td>0xB6B33430de68868ba97dD21769151f58F438d747</td>
+                        <td>adjhjahdhasfaascfnsadjh</td>
                         <td><input type="checkbox" /></td>
 
                     </tr>
                     <tr>
-                        <td>0xf8491533da76F4F2704de15D177BCc530043Ef79</td>
+                        <td>adjhjahdhasfaascfnsadjh</td>
                         <td><input type="checkbox" /></td>
 
                     </tr>
                     <tr>
-                        <td>0x24dbF4a249dF7f0A32f68f5E116E3959A15ed200</td>
+                        <td>adjhjahdhasfaascfnsadjh</td>
                         <td><input type="checkbox" /></td>
 
                     </tr>
                     <tr>
-                        <td>0xf9098fAcF44DdF1DfacEc084f8a80122C31f1EA7</td>
+                        <td>adjhjahdhasfaascfnsadjh</td>
                         <td><input type="checkbox" /></td>
 
                     </tr>
                     <tr>
-                        <td>0x66232A96DaC779D60f3fAF874708f7D32c623532</td>
+                        <td>adjhjahdhasfaascfnsadjh</td>
                         <td><input type="checkbox" /></td>
 
                     </tr>
@@ -177,4 +269,4 @@
 
     </div>
 
-</div>
+</div> -->
