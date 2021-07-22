@@ -103,26 +103,59 @@ export class ApiService {
     return await new window.web3.eth.Contract(ABI, SCAddress);
   }
 
+  // DROP the candidate from the campaign
+  async drop(contractInstance, userAccount, addresses,id) {
+    console.log('-------addresses,id------------------', contractInstance, userAccount, addresses,id)
+    return new Promise((resolve, reject) => {
+
+      contractInstance.methods.drop(id,addresses).send({ from: userAccount }).then((data) => {
+        if (data) {
+          resolve(data);
+        }
+      }).catch((er) => {
+        if (er) {
+          reject(er);
+        }
+      })
+
+    })
+  }
+
+  // swap canidate from 2 to destination
+  async swap(contractInstance, userAccount, addresses,id) {
+    console.log('-------swapping,id------------------', contractInstance, userAccount, addresses,id)
+    return new Promise((resolve, reject) => {
+
+      contractInstance.methods.swap(id,addresses).send({ from: userAccount }).then((data) => {
+        if (data) {
+          resolve(data);
+        }
+      }).catch((er) => {
+        if (er) {
+          reject(er);
+        }
+      })
+
+    })
+  }
+
   // --dn
   async export() {
     if (window.web3) {
       return new Promise((resolve, reject) => {
         window.web3.eth.getAccounts((error, result) => {
 
-          // just 1 min jo
           if (error != null) {
             resolve([]);
           }
 
+          // Make sure ethereum providered successfully.
           if (result == undefined || result.length == 0) {
-            // alert("No account found! Make sure the Ethereum client is configured properly.");
             resolve([]);
           } else {
 
             let account = result[0];
-
             window.web3.eth.defaultAccount = account;
-
             resolve(account)
           }
         })
@@ -133,13 +166,11 @@ export class ApiService {
 
   }
 
-
-  async createCampaign(contractInstance, userAccount, addresses) {
-    // amount2 = Web3.utils.toWei(`${amount2}`)
-    console.log('-------addresses------------------', contractInstance, userAccount, addresses)
+  async etch(contractInstance, userAccount, addresses,id) {
+    console.log('prism voting app [:info] :: inside etch ', contractInstance, userAccount, addresses,id)
     return new Promise((resolve, reject) => {
 
-      contractInstance.methods.createCampaign(addresses).send({ from: userAccount }).then((data) => {
+      contractInstance.methods.etch(id,addresses).send({ from: userAccount }).then((data) => {
         if (data) {
           resolve(data);
         }
@@ -153,8 +184,7 @@ export class ApiService {
   }
 
   async vote(contractInstance, userAccount, addresses,id) {
-    // amount2 = Web3.utils.toWei(`${amount2}`)
-    console.log('-------addresses,id------------------', contractInstance, userAccount, addresses,id)
+    console.log('prism voting app [:info] : inside voting method', contractInstance, userAccount, addresses,id)
     return new Promise((resolve, reject) => {
 
       contractInstance.methods.vote(id,addresses).send({ from: userAccount }).then((data) => {
@@ -169,4 +199,40 @@ export class ApiService {
 
     })
   }
+
+  async addWeight(contractInstance, userAccount, addresses) {
+    console.log('prism voting app [:info] : inside addWeight method', contractInstance, userAccount, addresses)
+    return new Promise((resolve, reject) => {
+
+      contractInstance.methods.addWeight(addresses).send({ from: userAccount }).then((data) => {
+        if (data) {
+          resolve(data);
+        }
+      }).catch((er) => {
+        if (er) {
+          reject(er);
+        }
+      })
+
+    })
+  }
+
+  async subWeight(contractInstance, userAccount, addresses) {
+    console.log('prism voting app [:info] : inside subWeight method', contractInstance, userAccount, addresses)
+    return new Promise((resolve, reject) => {
+
+      contractInstance.methods.subWeight(addresses).send({ from: userAccount }).then((data) => {
+        if (data) {
+          resolve(data);
+        }
+      }).catch((er) => {
+        if (er) {
+          reject(er);
+        }
+      })
+
+    })
+  }
+
+
 }
