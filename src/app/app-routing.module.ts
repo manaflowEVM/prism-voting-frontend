@@ -5,10 +5,15 @@ import { VoteComponent } from './vote/vote.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: VoteComponent,
-  }
+//   {
+//   path: '',
+//   component: RegisterComponent,
+// },
+{
+  path: '',
+  component: VoteComponent,
+}
+
 ];
 
 @NgModule({

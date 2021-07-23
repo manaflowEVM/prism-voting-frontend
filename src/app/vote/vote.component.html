@@ -8,26 +8,33 @@
     <hr>
     <div class="row text-center mt-5">
         <div class="col-md-4">
-            <h3> <b>Your GOV: 1000</b></h3>
+            <h3> <b>Your GOV: {{showObj.GOVBalance ? showObj.GOVBalance : 0}}</b></h3>
         </div>
         <div class="col-md-4">
-            <input type="number" class="form-control">
+            <form name="lockForm" [formGroup]="lockForm">
+                <input type="number" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted1 && lockForm.controls._amount.errors }"
+                    formControlName="_amount" placeholder="Enter Amount">
+            </form>
         </div>
         <div class="col-md-4">
-            <button type="submit" (click)="onCreate()"> Lock (GOV -> IOU)</button>
-
+            <button type="submit" (click)="onLock()"> Lock (GOV -> IOU)</button>
         </div>
     </div>
     <div class="row text-center mt-5">
         <div class="col-md-4">
-            <h3> <b>Your IOU: 5000</b></h3>
+            <h3> <b>Your IOU: {{showObj.IOUBalance ? showObj.IOUBalance : 0}}</b></h3>
         </div>
-        <div class="col-md-4">
-            <input type="number" class="form-control">
-        </div>
-        <div class="col-md-4">
-            <button type="submit" (click)="onCreate()"> Free ( IOU -> GOV)</button>
 
+        <div class="col-md-4">
+            <form name="freeForm" [formGroup]="freeForm">
+                <input type="number" class="form-control"
+                    [ngClass]="{ 'is-invalid': submitted2 && freeForm.controls._amount.errors }"
+                    formControlName="_amount" placeholder="Enter Amount">
+            </form>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" (click)="onFree()"> Free ( IOU -> GOV)</button>
         </div>
     </div>
 
@@ -35,61 +42,141 @@
         <div class="col-md-6 text-right">
             <h3> Current Voted slate :</h3>
         </div>
- 
+
         <div class="col-md-6">
             <h3> <b>0x6ab8463a4185b80905e05....</b></h3>
         </div>
         <div class="col-md-6 text-right">
             <h3> Selected slate :</h3>
         </div>
- 
+
         <div class="col-md-6">
-            <h3> <b>0x28e2bc0b49BB3A4271c52287Df....</b></h3>
+            <div class="d-flex">
+                <h3> <b>0x7347..b443 ,</b></h3>  
+                <h3> <b> 0x12C2...144f</b></h3>
+            </div>
+
         </div>
 
-        <div class="col-md-6 text-right">
+        <!-- <div class="col-md-6 text-right">
             <button type="submit" class="ml-5" style="font-size: 20px;" (click)="onCreate() "> Etch</button>
-            <button type="submit"  class="ml-5" style="font-size: 20px;" (click)="onCreate()"> Vote</button>
-        </div>
+            <button type="submit" class="ml-5" style="font-size: 20px;" (click)="onCreate()"> Vote</button>
+        </div> -->
     </div>
     <div class="row mt-5">
         <div class="col-md-12 text-center ">
-            <!-- list of the candidates -->
+
             <h3> <b>Selected Candidates list</b></h3>
             <table class="table table-hover table-striped">
                 <tbody>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td style="font-size: 30px;"> 0xf164fc0ec4e93095b804a4795....</td>
-        
+                    <tr *ngFor="let candi of candidates;">
+                        <td><input type="checkbox" (click)="onClickCandidate($event,candi)" /></td>
+                        <td style="font-size: 30px;">{{candi ? candi : '-'}}</td>
+
                     </tr>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td style="font-size: 30px;"> 0x28e2bc0b49BB3A4271c52287Df....</td>
-        
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td style="font-size: 30px;"> f164fc0ec4e93095b804adfadft7g4....</td>
-        
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td style="font-size: 30px;"> 0x2E1b342132A67Ea578e4E3B8fsf54....</td>
-        
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" /></td>
-                        <td style="font-size: 30px;"> 0x28e2bc0b49BB3A4271c52287Df....</td>
-        
-                    </tr>
+
                 </tbody>
             </table>
         </div>
     </div>
-    
+
+
+    <div class="row mt-5">
+  
+        <div class="col-md-12 mb-5 text-center">
+            <button type="submit" class="ml-5" style="font-size: 20px;" (click)="onVote()"> Vote</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="container">
+
+    <div class="row text-center" style="margin-top:90px;">
+        <div class="col-md-6">
+            <h3> <b>ICU TOKEN</b></h3>
+        </div>
+        <div class="col-md-6">
+            <h3> <b>ICU TOKEN</b></h3>
+
+        </div>
+        <div class="col-md-6">
+            <p> <b>ICU TOKEN</b></p>
+        </div>
+        <div class="col-md-6">
+            <p> <b>ICU TOKEN</b></p>
+
+        </div>
+        <div class="col-md-6">
+            <h3> <b>balance</b></h3>
+        </div>
+        <div class="col-md-6">
+            <h3> <b>balance</b></h3>
+
+        </div>
+        <div class="col-md-6">
+            <p> <b>0000</b></p>
+        </div>
+        <div class="col-md-6">
+            <p> <b>0000</b></p>
+
+        </div>
+        <hr>
+        <div class="col-md-6">
+            <button type="submit" (click)="onCreate()"> Approve</button>
+        </div>
+        <div class="col-md-6">
+            <button type="submit" (click)="onCreate()"> Approve</button>
+
+        </div>
+    </div>
     <hr>
-        <!-- select multiple candidate and vote -->
+    <div class="row text-center mt-5">
+        <div class="col-md-3">
+            <h3> <b>Lock free</b></h3>
+        </div>
+        <div class="col-md-6">
+            <input type="number" class="form-control">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" (click)="onCreate()"> LockFee</button>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row text-center mt-5">
+        <div class="col-md-7">
+            <h3> <b>Candidates list</b></h3>
+            <table class="table table-hover table-striped">
+                <tbody>
+                    <tr>
+                        <td>adjhjahdhasfaascfnsadjh</td>
+                        <td><input type="checkbox" /></td>
+
+                    </tr>
+                    <tr>
+                        <td>adjhjahdhasfaascfnsadjh</td>
+                        <td><input type="checkbox" /></td>
+
+                    </tr>
+                    <tr>
+                        <td>adjhjahdhasfaascfnsadjh</td>
+                        <td><input type="checkbox" /></td>
+
+                    </tr>
+                    <tr>
+                        <td>adjhjahdhasfaascfnsadjh</td>
+                        <td><input type="checkbox" /></td>
+
+                    </tr>
+                    <tr>
+                        <td>adjhjahdhasfaascfnsadjh</td>
+                        <td><input type="checkbox" /></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="col-md-5 mt-5">
 
             <div class="row">
@@ -113,3 +200,70 @@
 
     </div>
     <hr>
+
+    <div class="row  mt-5">
+        <div class="col-md-8">
+
+
+            <form>
+                <fieldset>
+                    <legend class="scheduler-border">Personalia:</legend>
+                    <div class=" d-flex ">
+                        <label for="fname " style="max-width: 100px;" class="mr-3">Add weight:</label>
+                        <input type="text" class="form-control " class="mr-3" style="max-width: 500px;" id="fname"
+                            name="fname"><br><br>
+                        <input type="submit" value="Submit">
+
+                    </div>
+                    <div class=" d-flex mt-2">
+                        <label for="fname " style="max-width: 100px;" class="mr-3">Sub weight:</label>
+                        <input type="text" class="form-control " class="mr-3" style="max-width: 500px;" id="fname"
+                            name="fname"><br><br>
+                        <input type="submit" value="Submit">
+
+                    </div>
+
+
+
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+
+    <div class="row  mt-5">
+        <div class="col-md-12">
+
+
+            <form>
+                <fieldset>
+                    <legend class="scheduler-border">Personalia:</legend>
+                    <div class=" d-flex ">
+                        <label for="fname " style="max-width: 100px;" class="mr-3">Drop:</label>
+                        <input type="text" class="form-control " class="mr-3" style="max-width: 100px;" id="fname"
+                            name="fname"><br><br>
+                        <input type="text" class="form-control " class="mr-3" style="max-width: 100px;" id="fname"
+                            name="fname"><br><br>
+                        <input type="submit" value="Submit">
+
+                    </div>
+                    <div class=" d-flex mt-2">
+                        <label for="fname " style="max-width: 100px;" class="mr-3">Swap:</label>
+                        <input type="text" class="form-control " class="mr-3" style="max-width: 100px;" id="fname"
+                            name="fname"><br><br>
+                        <input type="text" class="form-control " class="mr-3" style="max-width: 100px;" id="fname"
+                            name="fname"><br><br>
+                        <input type="submit" value="Submit">
+
+                    </div>
+
+
+
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+
+</div> -->
